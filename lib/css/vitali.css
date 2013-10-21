@@ -1,0 +1,9 @@
+.figurecell {
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #FFFFFF), color-stop(1, #00A3EF));
+    background-repeat:no-repeat;
+    background-position: 5% 80%;
+    text-align: right; font-size: 400%; 
+    box-shadow: 10px 10px 5px #888;
+}

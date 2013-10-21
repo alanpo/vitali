@@ -1,0 +1,31 @@
+.griditem{
+    max-height: 130px;
+    height: 130px;
+}
+.griditemtext{
+   
+    left: 170px;
+    top:-75px;
+    text-align: left;
+}
+img {
+    max-width: 120px;
+    height: 120px;
+    /*width: auto\9; ie8 */
+}
+.dummydiv{
+    width: 100px;
+    margin: auto;
+ 
+}
+#ph1, #ph2,#ph3,#ph4{    
+    position: absolute;
+    z-index: 1;
+
+
+}
+#phd1, #phd2,#phd3, #phd4{
+    position: absolute;
+    z-index: 2;
+    margin: 53px 0px 0px 10px;
+}

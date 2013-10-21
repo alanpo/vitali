@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Vital-i System</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet"  href="lib/css/jquery.mobile.min.css">
+        <link rel="stylesheet"  href="lib/css/vitali.css">
+
+        <script src="lib/js/jquery.min.js"></script>
+        <script src="lib/js/jquery.mobile.min.js"></script>
+        <script type="text/javascript">
+            jsonurl = "";
+            function setData(callurl) {
+                $.ajax({url: callurl + "/data.php", dataType: "json", success: function(jsonobj) {
+                        username = jsonobj.userName;
+                        bodytemp = jsonobj.tmp + "<br><font size=6>&deg;C</font></br>";
+                        bloodp = jsonobj.ubp + "<br><font size=6>/"+jsonobj.lbp+"</font></br>";
+                        heartb = jsonobj.pulse + "<br><font size=6>bpm</font></br>";
+                        bloodo = jsonobj.spo2 + "<br><font size=6>%</font></br>";
+                        $("#username").html(username);
+                        $("#bodytemp").html(bodytemp);
+                        if (jsonobj.tmp > 37.2) {
+                            $("#bodytemp").css("color", "red");
+                            $("#bodytempcell").css("box-shadow", "10px 10px 5px red");
+                        } else {
+                            $("#bodytemp").css("color", "black");
+                            $("#bodytempcell").css("box-shadow", "10px 10px 5px #888");
+                        }
+                        $("#bloodp").html(bloodp);
+                        if (jsonobj.ubp > 160) {
+                            $("#bloodp").css("color", "red");
+                            $("#bloodpcell").css("box-shadow", "10px 10px 5px red");
+                        } else {
+                            $("#bloodp").css("color", "black");
+                            $("#bloodpcell").css("box-shadow", "10px 10px 5px #888");
+                        }
+                        $("#heartb").html(heartb);
+                        if (jsonobj.pulse > 90) {
+                            $("#heartb").css("color", "red");
+                            $("#heartbeatcell").css("box-shadow", "10px 10px 5px red");
+                        } else {
+                            $("#heartb").css("color", "black");
+                            $("#heartbeatcell").css("box-shadow", "10px 10px 5px #888");
+                        }
+                        $("#bloodo").html(bloodo);
+                        if (jsonobj.spo2 < 70) {
+                            $("#bloodo").css("color", "red");
+                            $("#bloodocell").css("box-shadow", "10px 10px 5px red");
+                        } else {
+                            $("#bloodo").css("color", "black");
+                            $("#bloodocell").css("box-shadow", "10px 10px 5px #888");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        $("#username").html('URL '+callurl+' error, please try again! '+status+' : '+error);
+                        clearTimeout(timerID);
+                        $("#url").slideDown(5);
+                    }
+                });
+            }
+            function callData(callurl) {
+                if (callurl) {
+                    chkhttp = callurl.substring(0, 7);
+
+                    if (chkhttp == "http://") {
+                        jsonurl = callurl;
+                    } else {
+                        jsonurl = "http://" + callurl;
+                    }
+                    $("#url").slideUp(5);
+
+                }
+                setData(jsonurl);
+                timerID = setTimeout(function() {
+                    callData(null);
+                }, 1000);
+            }
+            $(document).live('pageinit', function(event) {
+                height = $(window).height() - 42 - 43 - 30;
+                $('#content').css('min-height', height + 'px');
+            });
+        </script>
+    </head>
+    <body>
+
+        <div data-role="page">
+
+            <div data-role="header" id="header">
+                <h1>Vital-i (ver 0.3)</h1>
+            </div><!-- /header -->
+
+            <div data-role="content" id="content">
+                <div id="url">
+                    <input type="text" name="callurl" value="192.168.10.3/relative">
+                    <button onclick="callData(document.getElementsByName('callurl')[0].value)">Get Data</button>
+                    <br/>
+                </div>
+                <ul data-role="listview">
+                    <li>
+                        <img src="lib/css/images/User.png"  class="ui-li-icon"><span id="username"></span>
+                    </li>
+                </ul>
+                <table CELLSPACING=15 cellpadding=5 style="width: 100%;">
+                    <tr style="font-size: x-large;"><th width="50%">溫度</th><th width="50%">血壓</th></tr>
+                    <tr>
+                        <td id="bodytempcell" width="50%" 
+                            class="figurecell"
+                            style="background-image:url('lib/css/images/Thermometer.png'), -webkit-linear-gradient(top right, #FFFFFF 0%, #00A3EF 300%);">
+                            <span id="bodytemp">0<br><font size=6> &deg;C</font></br></span></td>
+                        <td id="bloodpcell" width="50%" 
+                            class="figurecell"
+                            style="background-image:url('lib/css/images/Sphygmomanometer.png'), -webkit-linear-gradient(top right, #FFFFFF 0%, #00A3EF 300%);">
+                            <span id="bloodp">0<br><font size=6> /80</font></br></span></td>
+                    </tr>
+                </table>
+
+                <table CELLSPACING=15 cellpadding=5 style="width: 100%;">
+                    <tr style="font-size: x-large;"><th width="50%">心跳頻率</th><th width="50%">血含氧量</th></tr>
+                    <tr>
+                        <td id="heartbeatcell" width="50%" 
+                            class="figurecell"
+                            style="background-image:url('lib/css/images/Heartbeat.png'), -webkit-linear-gradient(top right, #FFFFFF 0%, #00A3EF 300%);">
+                            <span id="heartb">0<br><font size=6>bpm</font></br></span></td>
+                        <td id="bloodocell" width="50%" 
+                            class="figurecell"
+                            style="background-image:url('lib/css/images/blood.png'), -webkit-linear-gradient(top right, #FFFFFF 0%, #00A3EF 300%);">
+                            <span id="bloodo">0<br><font size=6> %</font></br></span></td>
+                    </tr>
+                </table>
+            </div><!-- /content -->
+
+            <div data-role="footer" id="footer" style="text-align: left;">
+                <h4>© 2013-2014 VTC</h4>
+            </div><!-- /footer -->
+        </div><!-- /page -->
+    </body>
+</html>
