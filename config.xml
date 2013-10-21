@@ -21,8 +21,8 @@
 	</gap:platforms>
 
 	<icon src="icon.png" gap:role="default" />
-
-    <gap:splash src="weirdo.png" />
+    <gap:splash src="default.png" gap:platform="ios" width="640" height="1136" />
+    <gap:splash src="weirdo.png" gap:platform="android" width="640" height="1136"/>
 
 	<feature name="http://api.phonegap.com/1.0/geolocation"/>
 	<feature name="http://api.phonegap.com/1.0/network"/>
