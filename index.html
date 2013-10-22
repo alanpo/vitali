@@ -158,9 +158,9 @@ and open the template in the editor.
                             //$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 
                             // if the notification contains a soundname, play it.
-                            var my_media = new Media(e.soundname);
+                            var my_media = new Media("beep.wav");
                             my_media.play();
-                            alert(e.message);
+                            alert(e.soundname);
                         }
                         else
                         {	// otherwise we were launched because the user touched a notification in the notification tray.
