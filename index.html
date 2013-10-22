@@ -11,6 +11,8 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <link rel="stylesheet"  href="lib/css/jquery.mobile.min.css">
         <link rel="stylesheet"  href="lib/css/vitali.css">
+        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <script type="text/javascript" src="PushNotification.js"></script>
 
         <script src="lib/js/jquery.min.js"></script>
         <script src="lib/js/jquery.mobile.min.js"></script>
@@ -18,7 +20,7 @@ and open the template in the editor.
             jsonurl = "";
             function setData(callurl) {
                 $.ajax({url: callurl + "/data.php", dataType: "json", success: function(jsonobj) {
-                        username = jsonobj.userName;
+                        username = jsonobj.userName+"'s status at "+jsonobj.date;
                         bodytemp = jsonobj.tmp + "<br><font size=6>&deg;C</font></br>";
                         bloodp = jsonobj.ubp + "<br><font size=6>/"+jsonobj.lbp+"</font></br>";
                         heartb = jsonobj.pulse + "<br><font size=6>bpm</font></br>";
