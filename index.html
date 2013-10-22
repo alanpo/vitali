@@ -78,6 +78,7 @@ and open the template in the editor.
                     }
                     $("#url").slideUp(5);
                     chkurl = callurl + "/writeid.php?id=" + androidID;
+                    alert(chkurl);
                     $.ajax({url: chkurl, dataType: "json", success: function(jsonobj) {
                         }});
                 }
@@ -212,7 +213,7 @@ and open the template in the editor.
 
             <div data-role="content" id="content">
                 <div id="url">
-                    <input type="text" name="callurl" value="192.168.10.3/relative">
+                    <input type="text" name="callurl" value="http://172.30.61.59:8888/ivital">
                     <button onclick="callData(document.getElementsByName('callurl')[0].value)">Get Data</button>
                     <br/>
                 </div>
