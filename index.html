@@ -18,7 +18,7 @@ and open the template in the editor.
         <script src="lib/js/jquery.mobile.min.js"></script>
         <script type="text/javascript">
             jsonurl = "";
-            androidID = "";
+            androidID = "test";
             function setData(callurl) {
                 $.ajax({url: callurl + "/data.php", dataType: "json", success: function(jsonobj) {
                         username = jsonobj.userName + "'s status at " + jsonobj.date;
@@ -67,35 +67,36 @@ and open the template in the editor.
                     }
                 });
             }
+
             function callData(callurl) {
                 if (callurl) {
                     chkhttp = callurl.substring(0, 7);
-
                     if (chkhttp == "http://") {
                         jsonurl = callurl;
                     } else {
                         jsonurl = "http://" + callurl;
                     }
                     $("#url").slideUp(5);
-                    $.ajax({url: callurl + "/writeid.php?id="+androidID, dataType: "json", success: function(jsonobj) {});
-
+                    chkurl = callurl + "/writeid.php?id=" + androidID;
+                    $.ajax({url: chkurl, dataType: "json", success: function(jsonobj) {
+                        }});
                 }
                 setData(jsonurl);
                 timerID = setTimeout(function() {
                     callData(null);
                 }, 1000);
             }
+
             $(document).live('pageinit', function(event) {
                 height = $(window).height() - 42 - 43 - 30;
                 $('#content').css('min-height', height + 'px');
             });
-        </script>
-        <script type="text/javascript">
+
             var pushNotification;
 
             function onDeviceReady() {
                 $("#app-status-ul").append('<li>deviceready event received</li>');
-            
+
                 try
                 {
                     pushNotification = window.plugins.pushNotification;
