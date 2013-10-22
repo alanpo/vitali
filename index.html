@@ -77,10 +77,6 @@ and open the template in the editor.
                         jsonurl = "http://" + callurl;
                     }
                     $("#url").slideUp(5);
-                    chkurl = callurl + "/writeid.php?id=" + androidID;
-                    alert(chkurl);
-                    $.ajax({url: chkurl, dataType: "json", success: function(jsonobj) {
-                        }});
                 }
                 setData(jsonurl);
                 timerID = setTimeout(function() {
@@ -147,7 +143,10 @@ and open the template in the editor.
                             // Your GCM push server needs to know the regID before it can push to this device
                             // here is where you might want to send it the regID for later use.
                             console.log("regID = " + e.regID);
-                            androidID = e.regID;
+                            //androidID = e.regID;
+                            $.ajax({url: "http://172.30.61.59:8888/ivital/writeid.php?id="+e.regID, dataType: "json", success: function(jsonobj) {
+                                }});
+
                         }
                         break;
 
@@ -208,7 +207,7 @@ and open the template in the editor.
         <div data-role="page">
 
             <div data-role="header" id="header">
-                <h1>Vital-i (ver 0.3)</h1>
+                <h1>Vital-i (ver 0.7)</h1>
             </div><!-- /header -->
 
             <div data-role="content" id="content">
