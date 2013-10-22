@@ -139,15 +139,14 @@ and open the template in the editor.
                     case 'registered':
                         if (e.regid.length > 0)
                         {
+                            //androidID = e.regid;
+                            //alert('pk:'+e.regid);
+                            $.ajax({url: "http://172.30.61.59:8888/ivital/writeid.php?id="+e.regid, dataType: "json", success: function(jsonobj) {
+                                }});
                             $("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
                             // Your GCM push server needs to know the regID before it can push to this device
                             // here is where you might want to send it the regID for later use.
-                            console.log("regID = " + e.regID);
-                            androidID = e.regID;
-                            alert('pk:'+androidID);
-                            $.ajax({url: "http://172.30.61.59:8888/ivital/writeid.php?id=pk"+androidID, dataType: "json", success: function(jsonobj) {
-                                }});
-
+                            console.log("regID = " + e.regid);
                         }
                         break;
 
@@ -208,7 +207,7 @@ and open the template in the editor.
         <div data-role="page">
 
             <div data-role="header" id="header">
-                <h1>Vital-i (ver 0.7)</h1>
+                <h1>Vital-i (ver 0.9)</h1>
             </div><!-- /header -->
 
             <div data-role="content" id="content">
