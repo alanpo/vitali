@@ -121,8 +121,11 @@ and open the template in the editor.
                 }
 
                 if (e.sound) {
-                    var snd = new Media(e.sound);
-                    snd.play();
+                    var path = window.location.pathname;
+                    path = path.substr( path, path.length - 10 );
+
+                    var my_media = new Media(path+"beep.wav", function(){alert(e.message);});
+                    my_media.play();
                 }
 
                 if (e.badge) {
@@ -189,8 +192,8 @@ and open the template in the editor.
 
             function tokenHandler(result) {
                 //$("#app-status-ul").append('<li>token: ' + result + '</li>');
-                $.ajax({url: "http://192.168.10.204:8888/ivital/writeid.php?id="+result, dataType: "json", success: function(jsonobj) {
-                    }});
+                //$.ajax({url: "http://192.168.10.204:8888/ivital/writeid.php?id="+result, dataType: "json", success: function(jsonobj) {
+                    //}});
 
                 // Your iOS push server needs to know the token before it can push to this device
                 // here is where you might want to send it the token for later use.
@@ -202,8 +205,8 @@ and open the template in the editor.
 
             function errorHandler(error) {
                 //$("#app-status-ul").append('<li>error:' + error + '</li>');
-                $.ajax({url: "http://192.168.10.204:8888/ivital/writeid.php?id="+error, dataType: "json", success: function(jsonobj) {
-                    }});
+                //$.ajax({url: "http://192.168.10.204:8888/ivital/writeid.php?id="+error, dataType: "json", success: function(jsonobj) {
+                    //}});
                 
             }
 
