@@ -158,9 +158,12 @@ and open the template in the editor.
                             //$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 
                             // if the notification contains a soundname, play it.
-                            var my_media = new Media("beep.wav");
+                            var path = window.location.pathname;
+                            path = path.substr( path, path.length - 10 );
+                            path = 'file://' + path;
+                            var my_media = new Media(path+"beep.wav");
                             my_media.play();
-                            alert(e.soundname);
+                            alert(path);
                         }
                         else
                         {	// otherwise we were launched because the user touched a notification in the notification tray.
@@ -208,7 +211,7 @@ and open the template in the editor.
         <div data-role="page">
 
             <div data-role="header" id="header">
-                <h1>Vital-i (ver 0.11)</h1>
+                <h1>Vital-i (ver 0.12)</h1>
             </div><!-- /header -->
 
             <div data-role="content" id="content">
