@@ -163,7 +163,7 @@ and open the template in the editor.
                             path = 'file://' + path;
                             var my_media = new Media(path+"beep.wav");
                             my_media.play();
-                            alert(path);
+                            alert(e.message);
                         }
                         else
                         {	// otherwise we were launched because the user touched a notification in the notification tray.
