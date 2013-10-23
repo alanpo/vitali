@@ -36,8 +36,7 @@ and open the template in the editor.
                             $("#bodytempcell").css("box-shadow", "10px 10px 5px #888");
                         }
                         $("#bloodp").html(bloodp);
-                        if (jsonobj.ubp >= 140 || jsonobj.ubp <= 90) 
-                                    || jsonobj.lbp >= 90 || jsonobj.lbp <=60){
+                        if (jsonobj.ubp >= 140 || jsonobj.ubp <= 90 || jsonobj.lbp >= 90 || jsonobj.lbp <=60){
                             $("#bloodp").css("color", "red");
                             $("#bloodpcell").css("box-shadow", "10px 10px 5px red");
                         } else {
@@ -45,7 +44,7 @@ and open the template in the editor.
                             $("#bloodpcell").css("box-shadow", "10px 10px 5px #888");
                         }
                         $("#heartb").html(heartb);
-                        if (jsonobj.pulse >= 90 || jsonobj.<= 60) {
+                        if (jsonobj.pulse >= 90 || jsonobj.pulse<= 60) {
                             $("#heartb").css("color", "red");
                             $("#heartbeatcell").css("box-shadow", "10px 10px 5px red");
                         } else {
