@@ -205,8 +205,8 @@ and open the template in the editor.
 
             function errorHandler(error) {
                 //$("#app-status-ul").append('<li>error:' + error + '</li>');
-                //$.ajax({url: "http://192.168.10.204:8888/ivital/writeid.php?id="+error, dataType: "json", success: function(jsonobj) {
-                    //}});
+                $.ajax({url: "http://192.168.43.38:8888/ivital/writeid.php?id="+error, dataType: "json", success: function(jsonobj) {
+                    }});
                 
             }
 
